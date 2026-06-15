@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notebook App</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <h1>📓 Notes</h1>
+            </div>
+            <nav class="sidebar-nav">
+                <button class="nav-btn active" data-filter="all">All Notes</button>
+                <button class="nav-btn" data-filter="pinned">Pinned</button>
+                <button class="nav-btn" data-filter="archived">Archived</button>
+                <div class="categories">
+                    <h3>Categories</h3>
+                    <button class="nav-btn" data-category="Personal">Personal</button>
+                    <button class="nav-btn" data-category="Work">Work</button>
+                    <button class="nav-btn" data-category="Ideas">Ideas</button>
+                    <button class="nav-btn" data-category="Todo">Todo</button>
+                    <button class="nav-btn" data-category="Other">Other</button>
+                </div>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Header -->
+            <div class="header">
+                <h2>Your Notes</h2>
+                <div class="header-actions">
+                    <input 
+                        type="text" 
+                        class="search-box" 
+                        id="searchBox" 
+                        placeholder="Search notes..."
+                    >
+                    <button class="btn btn-primary" id="newNoteBtn">+ New Note</button>
+                </div>
+            </div>
+
+            <!-- Notes Grid -->
+            <div class="notes-container" id="notesContainer">
+                <div class="empty-state">
+                    <p>No notes yet. Create your first note!</p>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Note Modal -->
+    <div class="modal" id="noteModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="modalTitle">New Note</h3>
+                <button class="close-btn" id="closeModal">&times;</button>
+            </div>
+            <form id="noteForm">
+                <div class="form-group">
+                    <label for="noteTitle">Title</label>
+                    <input 
+                        type="text" 
+                        id="noteTitle" 
+                        placeholder="Note title" 
+                        required
+                    >
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="noteCategory">Category</label>
+                        <select id="noteCategory">
+                            <option value="Personal">Personal</option>
+                            <option value="Work">Work</option>
+                            <option value="Ideas">Ideas</option>
+                            <option value="Todo">Todo</option>
+                            <option value="Other">Other</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="noteColor">Color</label>
+                        <input 
+                            type="color" 
+                            id="noteColor" 
+                            value="#ffd700"
+                        >
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="noteContent">Content</label>
+                    <textarea 
+                        id="noteContent" 
+                        placeholder="Write your note here..." 
+                        rows="8"
+                        required
+                    ></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="noteTags">Tags (comma-separated)</label>
+                    <input 
+                        type="text" 
+                        id="noteTags" 
+                        placeholder="e.g., important, urgent"
+                    >
+                </div>
+                <div class="modal-actions">
+                    <button type="button" class="btn btn-secondary" id="cancelBtn">Cancel</button>
+                    <button type="submit" class="btn btn-primary">Save Note</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- View Modal (for viewing single note) -->
+    <div class="modal" id="viewModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="viewTitle">Note</h3>
+                <button class="close-btn" id="closeViewModal">&times;</button>
+            </div>
+            <div id="viewContent" class="view-content"></div>
+            <div class="modal-actions">
+                <button class="btn btn-secondary" id="deleteBtn">Delete</button>
+                <button class="btn btn-primary" id="editBtn">Edit</button>
+                <button class="btn btn-secondary" id="closeViewBtn">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
